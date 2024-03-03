@@ -1,0 +1,270 @@
+<!-- export interface Musician {
+  _id?: string;
+  name: string;
+  instrument: string;
+  genre: string;
+  yearsExperience: number;
+  bands: string[];
+  albumsRecorded: string[];
+  concertsPerformed: string[];
+} -->
+
+<div
+  *ngIf="musicians"
+  class="w-screen flex items-center justify-center flex-col m-8"
+>
+  <div class="flex max-w-4xl justify-between items-center w-full">
+    <h2 class="text-2xl font-bold">My Music Records</h2>
+    <button
+      (click)="addModalVisible = !addModalVisible"
+      class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+    >
+      Add Musician
+    </button>
+  </div>
+  <form
+    *ngIf="addModalVisible"
+    (ngSubmit)="addMusician()"
+    class="mt-4 w-full max-w-xl"
+  >
+    <div class="flex flex-col gap-4">
+      <label class="text-xs font-semibold text-gray-600">Name:</label>
+      <input
+        [(ngModel)]="newMusician.name"
+        name="name"
+        id="name"
+        placeholder="Name"
+        required
+        class="text-sm font-bold text-gray-900"
+      />
+      <label class="text-xs font-semibold text-gray-600">Instrument:</label>
+      <input
+        [(ngModel)]="newMusician.instrument"
+        name="instrument"
+        id="instrument"
+        placeholder="Instrument"
+        required
+        class="text-sm font-bold text-gray-900"
+      />
+      <label class="text-xs font-semibold text-gray-600">Genre:</label>
+      <input
+        [(ngModel)]="newMusician.genre"
+        name="genre"
+        id="genre"
+        placeholder="Genre"
+        required
+        class="text-sm font-bold text-gray-900"
+      />
+      <label class="text-xs font-semibold text-gray-600"
+        >Years Experience:</label
+      >
+      <input
+        [(ngModel)]="newMusician.yearsExperience"
+        name="yearsExperience"
+        id="yearsExperience"
+        type="number"
+        placeholder="Years Experience"
+        required
+        class="text-sm font-bold text-gray-900"
+      />
+      <label class="text-xs font-semibold text-gray-600">Bands:</label>
+      <input
+        [(ngModel)]="newMusician.bands"
+        name="bands"
+        id="bands"
+        placeholder="Bands"
+        required
+        class="text-sm font-bold text-gray-900"
+      />
+      <label class="text-xs font-semibold text-gray-600"
+        >Albums Recorded:</label
+      >
+      <input
+        [(ngModel)]="newMusician.albumsRecorded"
+        name="albumsRecorded"
+        id="albumsRecorded"
+        placeholder="Albums Recorded"
+        required
+        class="text-sm font-bold text-gray-900"
+      />
+      <label class="text-xs font-semibold text-gray-600"
+        >Concerts Performed:</label
+      >
+      <input
+        [(ngModel)]="newMusician.concertsPerformed"
+        name="concertsPerformed"
+        id="concertsPerformed"
+        placeholder="Concerts Performed"
+        required
+        class="text-sm font-bold text-gray-900"
+      />
+      <div
+        class="flex flex-row items-center justify-center space-x-4 md:space-x-6 mt-4"
+      >
+        <button
+          (click)="addModalVisible = !addModalVisible"
+          class="bg-gray-500 hover:bg-gray-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+        >
+          cancel
+        </button>
+        <button
+          type="submit"
+          class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+        >
+          Add
+        </button>
+      </div>
+    </div>
+  </form>
+  <ul class="grid grid-cols-3 md:grid-cols-4 gap-4 w-full max-w-6xl mt-8">
+    <li
+      *ngFor="let musician of musicians"
+      class="flex flex-col items-start justify-between p-4 bg-gray-50 transition duration-300 ease-in-out"
+    >
+      <div class="flex flex-col gap-2 text-sm font-bold text-gray-700">
+        <ng-container *ngIf="selectedMusician === musician">
+          <label class="text-xs font-semibold text-gray-600"
+            >Musician Name:
+          </label>
+          <input
+            [(ngModel)]="musician.name"
+            name="playerName"
+            id="playerName"
+            placeholder="Player Name"
+            required
+            class="text-sm font-bold text-gray-900"
+          />
+          <label class="text-xs font-semibold text-gray-600">Instrument:</label>
+          <input
+            [(ngModel)]="musician.instrument"
+            name="position"
+            id="position"
+            placeholder="Position"
+            required
+            class="text-sm font-bold text-gray-900"
+          />
+          <label class="text-xs font-semibold text-gray-600">Genre:</label>
+          <input
+            [(ngModel)]="musician.genre"
+            name="goalsScored"
+            id="goalsScored"
+            type="number"
+            placeholder="Goals Scored"
+            required
+            class="text-sm font-bold text-gray-900"
+          />
+          <label class="text-xs font-semibold text-gray-600"
+            >Years Experience:</label
+          >
+          <input
+            [(ngModel)]="musician.yearsExperience"
+            name="assists"
+            id="assists"
+            type="number"
+            placeholder="Assists"
+            required
+            class="text-sm font-bold text-gray-900"
+          />
+          <label class="text-xs font-semibold text-gray-600">Bands:</label>
+          <input
+            [(ngModel)]="musician.bands"
+            name="yellowCards"
+            id="yellowCards"
+            type="number"
+            placeholder="Yellow Cards"
+            required
+            class="text-sm font-bold text-gray-900"
+          />
+          <label class="text-xs font-semibold text-gray-600"
+            >Albums Recorded:</label
+          >
+          <input
+            [(ngModel)]="musician.albumsRecorded"
+            name="redCards"
+            id="redCards"
+            type="number"
+            placeholder="Red Cards"
+            required
+            class="text-sm font-bold text-gray-900"
+          />
+          <label class="text-xs font-semibold text-gray-600"
+            >Concerts Performed:</label
+          >
+          <input
+            [(ngModel)]="musician.concertsPerformed"
+            name="minutesPlayed"
+            id="minutesPlayed"
+            type="number"
+            placeholder="Minutes Played"
+            required
+            class="text-sm font-bold text-gray-900"
+          />
+          <div
+            class="flex flex-row items-center justify-center space-x-4 md:space-x-6 mt-4"
+          >
+            <button
+              (click)="updateMusician(musician)"
+              class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+            >
+              Save
+            </button>
+            <button
+              (click)="selectedMusician = null"
+              class="bg-gray-500 hover:bg-gray-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+            >
+              Cancel
+            </button>
+          </div>
+        </ng-container>
+        <ng-container *ngIf="selectedMusician !== musician">
+          <label class="text-xs font-semibold text-gray-600"
+            >Musician Name:
+          </label>
+          <p class="text-sm font-bold text-gray-900">{{ musician.name }}</p>
+          <label class="text-xs font-semibold text-gray-600">Instrument:</label>
+          <p class="text-sm font-bold text-gray-900">
+            {{ musician.instrument }}
+          </p>
+          <label class="text-xs font-semibold text-gray-600">Genre:</label>
+          <p class="text-sm font-bold text-gray-900">{{ musician.genre }}</p>
+          <label class="text-xs font-semibold text-gray-600"
+            >Years Experience:</label
+          >
+          <p class="text-sm font-bold text-gray-900">
+            {{ musician.yearsExperience }}
+          </p>
+          <label class="text-xs font-semibold text-gray-600">Bands:</label>
+          <p class="text-sm font-bold text-gray-900">{{ musician.bands }}</p>
+          <label class="text-xs font-semibold text-gray-600"
+            >Albums Recorded:</label
+          >
+          <p class="text-sm font-bold text-gray-900">
+            {{ musician.albumsRecorded }}
+          </p>
+          <label class="text-xs font-semibold text-gray-600"
+            >Concerts Performed:</label
+          >
+          <p class="text-sm font-bold text-gray-900">
+            {{ musician.concertsPerformed }}
+          </p>
+          <div
+            class="flex flex-row items-center justify-center space-x-4 md:space-x-6 mt-4"
+          >
+            <button
+              (click)="selectedMusician = musician"
+              class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+            >
+              Edit
+            </button>
+            <button
+              (click)="deleteMusician(musician._id)"
+              class="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+            >
+              Delete
+            </button>
+          </div>
+        </ng-container>
+      </div>
+    </li>
+  </ul>
+</div>
